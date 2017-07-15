@@ -96,10 +96,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
             }
         });
     }
-// test gita
-    public int getRandom(){
-        return new Random().nextInt(jokeList.size()-1);
-    }
+
 
     @Override
     public void openFragment(Fragment fragment, FragmentActivity context) {
