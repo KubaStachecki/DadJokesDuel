@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-    android:text="DAD JOKES DUEL!" />
+        android:text="DAD JOKES DUEL!" />
 
     <ImageView
         android:id="@+id/joke_fragment_image"
@@ -20,10 +20,11 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/medium_padding"
         app:srcCompat="@mipmap/ic_launcher" />
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/joke_fragment_question"
@@ -47,7 +48,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -59,15 +60,13 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_win"
-             />
+            android:id="@+id/button_win" />
 
         <Button
             android:text="Next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_next"
-            />
+            android:id="@+id/button_next" />
     </LinearLayout>
 
 
