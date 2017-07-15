@@ -1,9 +1,14 @@
 package com.example.cordy.dadjokesduel;
 
+import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 
+import com.example.cordy.dadjokesduel.Fragments.JokeFragment;
 import com.example.cordy.dadjokesduel.Model.Joke;
 import com.example.cordy.dadjokesduel.Utils.MainToFragmentUtils;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +23,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements MainToFragmentUtils {
 
 
+    public static final String JOKE_PARCELABLE = "jokeParcelable";
     List<Joke> jokeList;
 
 
@@ -36,11 +42,20 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         //TODO dialog fragment z wygrana - animacja koniec gry - ilosc uzytych dowcipow (dialog fragment)
         //TODO
 
+
+
+
         jokeList = new ArrayList<>();
         Log.d("STAAAAART", jokeList.size() + "ROZMIAR LISTY");
 
 
         makeJokesList();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(JOKE_PARCELABLE, new Joke());
+
+
+        openFragment(JokeFragment.newInstance(bundle), this);
 
 
     }
@@ -81,5 +96,35 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     public int getRandom(){
         return new Random().nextInt(jokeList.size()-1);
     }
+
+
+    public void openFragment(Fragment fragment, FragmentActivity context) {
+
+        context.getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void backFragment(Fragment fragment, FragmentActivity context) {
+
+        context.getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.pop_enter, R.anim.pop_exit, R.anim.enter, R.anim.exit)
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
+    public void BackButton(Activity c) {
+
+        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+
+    }
+
 
 }
