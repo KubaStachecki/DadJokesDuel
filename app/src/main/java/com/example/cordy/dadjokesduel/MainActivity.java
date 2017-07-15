@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         //TODO dialog fragment z wygrana - animacja koniec gry - ilosc uzytych dowcipow (dialog fragment)
         //TODO
 
-
         jokeList = new ArrayList<>();
+        Log.d("STAAAAART", jokeList.size() + "ROZMIAR LISTY");
+
+
         makeJokesList();
 
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
-                Log.d("TAAAAG", Long.toString(dataSnapshot.getChildrenCount()) + "UDALO SIE POLACZYC");
+                Log.d("GEEEEET", Long.toString(dataSnapshot.getChildrenCount()) + "UDALO SIE POLACZYC");
 
                 jokeList.clear();
 
@@ -62,12 +64,15 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
 
                     Joke joke = child.getValue(Joke.class);
                     jokeList.add(joke);
-                    Log.d("TAAAAG", jokeList.size() + "ROZMIAR LISTY");
+                    Log.d("AAAAAADDDDDDDD", jokeList.size() + "ROZMIAR LISTY");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+
+                Log.d("TAAAAG", "DATABASE ERRORRR");
 
             }
         });
