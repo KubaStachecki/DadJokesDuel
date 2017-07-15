@@ -1,4 +1,4 @@
-package com.example.cordy.dadjokesduel;
+package com.example.cordy.dadjokesduel.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,26 +8,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cordy.dadjokesduel.R;
+import com.example.cordy.dadjokesduel.Utils.MainToFragmentUtils;
 
 
 public class JokeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
+    //TODO main game fragment
+
+
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private MainToFragmentUtils mListener;
 
     public JokeFragment() {
         // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static JokeFragment newInstance(String param1, String param2) {
         JokeFragment fragment = new JokeFragment();
         Bundle args = new Bundle();
@@ -50,24 +54,21 @@ public class JokeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_joke, container, false);
+         View view = inflater.inflate(R.layout.fragment_joke, container, false);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof MainToFragmentUtils) {
+            mListener = (MainToFragmentUtils) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement MainToFragmentUtils");
         }
     }
 
@@ -78,8 +79,4 @@ public class JokeFragment extends Fragment {
     }
 
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
