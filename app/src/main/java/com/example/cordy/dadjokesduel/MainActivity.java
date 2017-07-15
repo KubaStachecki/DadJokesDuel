@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements MainToFragmentUtils {
 
@@ -72,5 +73,8 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         });
     }
 
+    public int getRandom(){
+        return new Random().nextInt(jokeList.size()-1);
+    }
 
 }
