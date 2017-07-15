@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.cordy.dadjokesduel.Fragments.JokeFragment;
+import com.example.cordy.dadjokesduel.Generators.RandomGenerator;
 import com.example.cordy.dadjokesduel.Model.Joke;
 import com.example.cordy.dadjokesduel.Utils.MainToFragmentUtils;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     public static final String JOKE_PARCELABLE = "jokeParcelable";
     List<Joke> jokeList;
     Bundle bundle;
+    RandomGenerator randomGenerator;
 
 
     @Override
@@ -44,19 +46,19 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         //TODO
 
 
-
-
         jokeList = new ArrayList<>();
-        Log.d("STAAAAART", jokeList.size() + "ROZMIAR LISTY");
+        randomGenerator = new RandomGenerator();
+
 
         getSupportActionBar().hide();
 
 
-
         makeJokesList();
 
+        Joke currentJoke = jokeList.get(randomGenerator.randomJoke(jokeList.size()));
+
         bundle = new Bundle();
-        bundle.putParcelable(JOKE_PARCELABLE, new Joke());
+        bundle.putParcelable(JOKE_PARCELABLE, currentJoke);
 
 
         openFragment(JokeFragment.newInstance(bundle), this);
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                 Log.d("GEEEEET", Long.toString(dataSnapshot.getChildrenCount()) + "UDALO SIE POLACZYC");
-
                 jokeList.clear();
 
                 for (com.google.firebase.database.DataSnapshot child : dataSnapshot.getChildren()) {
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         return new Random().nextInt(jokeList.size()-1);
     }
 
-@Override
+    @Override
     public void openFragment(Fragment fragment, FragmentActivity context) {
 
         context.getSupportFragmentManager()

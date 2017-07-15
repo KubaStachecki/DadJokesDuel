@@ -15,7 +15,7 @@ public class RandomGenerator {
     //TODO - generator 1 - 5 dla dzwiekow
 
 
-    public int random(int listSize){
+    public int randomJoke(int listSize){
 
 
         return 1;
