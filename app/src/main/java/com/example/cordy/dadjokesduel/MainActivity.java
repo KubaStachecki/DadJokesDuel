@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // sout("Cześć Kuba"); if(true){openBeerAction(new Beer beer);}
 
         // CZESC JACEK
 
