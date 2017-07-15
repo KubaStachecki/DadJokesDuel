@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "24703601908",
+    "firebase_url": "https://dadjokesduel.firebaseio.com",
+    "project_id": "dadjokesduel",
+    "storage_bucket": "dadjokesduel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24703601908:android:9a4ae50912bf37c7",
+        "android_client_info": {
+          "package_name": "com.example.cordy.dadjokesduel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24703601908-u4cvsfqtn60oshtf0usbrcljbd7p4bt1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cordy.dadjokesduel",
+            "certificate_hash": "cd06e523a809d6a49cfe60a58f2decaa62ad4f5b"
+          }
+        },
+        {
+          "client_id": "24703601908-h3308fp6qjrere402hlu20hbu3idvulo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm-knBWWbNH_o-KRo40_ckBtVKu6Uopx8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24703601908-h3308fp6qjrere402hlu20hbu3idvulo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

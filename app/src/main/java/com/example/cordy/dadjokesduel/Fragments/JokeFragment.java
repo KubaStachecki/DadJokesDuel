@@ -92,6 +92,20 @@ public class JokeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        Joke currentJoke  = getArguments().getParcelable(MainActivity.JOKE_PARCELABLE);
+
+        questionText.setText(currentJoke.getQuestion());
+        answerText.setText(currentJoke.getAnswer());
+
+
+
+
+
+
+
+
+
+
         nextButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

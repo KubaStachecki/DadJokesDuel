@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.example.cordy.dadjokesduel.Fragments.JokeFragment;
 import com.example.cordy.dadjokesduel.Generators.RandomGenerator;
@@ -34,34 +35,23 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
 
 //TODO - splashscreen na poczatek i start (jako dialog fragment - ze slajdami z instrukcja)
 
         //https://www.androidhive.info/2016/05/android-build-intro-slider-app/
+
         //TODO - fragment wyswietlajacy dowcipy w dwoch polach tekstowych (rozna czcionka - pytanie odpowiedz)
-        //TODO - math random ktory losuje z listy obiekt typu suchar
-        // TODO - retrofit ktory sciaga plik json z sucharami - plik jest wczytywany do bazy
-        // TODO wczytywanie obiektow z pliku json
         //TODO dialog fragment z wygrana - animacja koniec gry - ilosc uzytych dowcipow (dialog fragment)
-        //TODO
+        //TODO obracanie ekranu
 
 
         jokeList = new ArrayList<>();
         randomGenerator = new RandomGenerator();
 
-
-        getSupportActionBar().hide();
-
-
         makeJokesList();
 
-        Joke currentJoke = jokeList.get(randomGenerator.randomJoke(jokeList.size()));
-
-        bundle = new Bundle();
-        bundle.putParcelable(JOKE_PARCELABLE, currentJoke);
-
-
-        openFragment(JokeFragment.newInstance(bundle), this);
 
 
     }
@@ -85,12 +75,15 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
                     jokeList.add(joke);
                     Log.d("AAAAAADDDDDDDD", jokeList.size() + "ROZMIAR LISTY");
                 }
+
+                getRandomFragmentJoke();
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-
+                Toast.makeText(getApplicationContext(), "Database error, check internet connection!", Toast.LENGTH_SHORT).show();
                 Log.d("TAAAAG", "DATABASE ERRORRR");
 
             }
@@ -99,9 +92,9 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
 
 
     @Override
-    public void openFragment(Fragment fragment, FragmentActivity context) {
+    public void openFragment(Fragment fragment) {
 
-        context.getSupportFragmentManager()
+        this.getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
                 .replace(R.id.container, fragment)
@@ -111,7 +104,8 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     @Override
     public void openFragmentMain() {
 
-        openFragment(JokeFragment.newInstance(bundle), this);
+
+        getRandomFragmentJoke();
 
 
     }
@@ -126,12 +120,22 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     }
 
 
-    public void BackButton(Activity c) {
+//    public void BackButton(Activity c) {
+//
+//        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+//        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+//
+//    }
 
-        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
-        c.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+
+    public void getRandomFragmentJoke() {
+
+        Joke currentJoke = jokeList.get(randomGenerator.randomJoke(jokeList.size()));
+        bundle = new Bundle();
+        bundle.putParcelable(JOKE_PARCELABLE, currentJoke);
+        openFragment(JokeFragment.newInstance(bundle));
+
 
     }
-
 
 }
