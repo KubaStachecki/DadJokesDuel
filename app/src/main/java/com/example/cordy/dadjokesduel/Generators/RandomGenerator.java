@@ -7,4 +7,20 @@ package com.example.cordy.dadjokesduel.Generators;
 public class RandomGenerator {
 
     //TODO klasa na matematyke do losowania dowcipow
+
+    //TODO - generator dowcipow z listy o danej dlugosci
+
+    //TODO - generator 1- 5 dla obrazkow
+
+    //TODO - generator 1 - 5 dla dzwiekow
+
+
+    public int random(int listSize){
+
+
+        return 1;
+    }
+
+
+
 }

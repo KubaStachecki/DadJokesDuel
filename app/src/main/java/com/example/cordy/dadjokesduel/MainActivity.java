@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         // CZESC JACEK
 
 //TODO - splashscreen na poczatek i start (jako dialog fragment - ze slajdami z instrukcja)
+
         //https://www.androidhive.info/2016/05/android-build-intro-slider-app/
         //TODO - fragment wyswietlajacy dowcipy w dwoch polach tekstowych (rozna czcionka - pytanie odpowiedz)
         //TODO - math random ktory losuje z listy obiekt typu suchar

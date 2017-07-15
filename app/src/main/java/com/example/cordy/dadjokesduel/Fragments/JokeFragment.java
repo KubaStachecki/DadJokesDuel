@@ -32,12 +32,11 @@ public class JokeFragment extends Fragment {
     }
 
 
-    public static JokeFragment newInstance(String param1, String param2) {
+    public static JokeFragment newInstance(Bundle bundle) {
         JokeFragment fragment = new JokeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
+        //bundle = joke.
+
         return fragment;
     }
 
