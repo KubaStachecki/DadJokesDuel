@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cordy.dadjokesduel.MainActivity;
 import com.example.cordy.dadjokesduel.Model.Joke;
 import com.example.cordy.dadjokesduel.R;
 import com.example.cordy.dadjokesduel.Utils.MainToFragmentUtils;
@@ -35,17 +36,12 @@ public class JokeFragment extends Fragment {
     TextView answerText;
 
 
+    MainToFragmentUtils mainUtils;
+
+
     //TODO main game fragment
 
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    private MainToFragmentUtils mListener;
 
     public JokeFragment() {
         // Required empty public constructor
@@ -71,20 +67,47 @@ public class JokeFragment extends Fragment {
 
 //        Joke thisJoke = getArguments();
 
+        ((MainActivity) getActivity()).getSupportActionBar().hide();
+
+        mainUtils = (MainActivity) getActivity();
+
+
+
+
 
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_joke, container, false);
-
         ButterKnife.bind(this,view);
-
-
         return view;
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        nextButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+              mainUtils.openFragmentMain();
+
+            }
+        });
+
+
+
+
+
+    }
+
+
 
 
 }

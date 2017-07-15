@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
 
     public static final String JOKE_PARCELABLE = "jokeParcelable";
     List<Joke> jokeList;
+    Bundle bundle;
 
 
     @Override
@@ -47,10 +48,13 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
         jokeList = new ArrayList<>();
         Log.d("STAAAAART", jokeList.size() + "ROZMIAR LISTY");
 
+        getSupportActionBar().hide();
+
+
 
         makeJokesList();
 
-        Bundle bundle = new Bundle();
+        bundle = new Bundle();
         bundle.putParcelable(JOKE_PARCELABLE, new Joke());
 
 
@@ -62,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     public void makeJokesList() {
 
         FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         DatabaseReference databaseReference = fDatabase.getReference();
         databaseReference.child("Jokes").addValueEventListener(new com.google.firebase.database.ValueEventListener() {
@@ -93,15 +96,22 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
     }
 
 
-
+@Override
     public void openFragment(Fragment fragment, FragmentActivity context) {
 
         context.getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
                 .replace(R.id.container, fragment)
-                .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void openFragmentMain() {
+
+        openFragment(JokeFragment.newInstance(bundle), this);
+
+
     }
 
     public void backFragment(Fragment fragment, FragmentActivity context) {
@@ -110,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements MainToFragmentUti
                 .beginTransaction()
                 .setCustomAnimations(R.anim.pop_enter, R.anim.pop_exit, R.anim.enter, R.anim.exit)
                 .replace(R.id.container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
